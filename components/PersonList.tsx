@@ -8,7 +8,7 @@ interface Props {
 
 export default function PersonList({ people }: Props): ReactElement {
   return (
-    <ul role='list' className='divide-y space-y-4 divide-gray-200'>
+    <ul role='list' className='divide-y space-y-4 pb-12 divide-gray-200'>
       {people.map((person) => (
         <li>
           <PersonListTile person={person} />
