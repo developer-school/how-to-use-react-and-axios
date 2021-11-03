@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "db": "json-server --watch ./db.json"
+    "db": "json-server --watch --port=3001 ./db.json"
   },
   "dependencies": {
     "next": "12.0.2",
