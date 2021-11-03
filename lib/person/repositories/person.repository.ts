@@ -7,7 +7,8 @@ type IPersonRepository = {
   getById: (id: number) => Promise<Person>;
   getByName: (name: string) => Promise<Person>;
   getByEmail: (email: string) => Promise<Person>;
-  create: (person: Person) => Promise<Person>;
+  create: (person: Person) => Promise<void>;
+  update: (person: Person) => Promise<void>;
 };
 
 export function PersonRepository(axios: AxiosInstance): IPersonRepository {
@@ -18,8 +19,9 @@ export function PersonRepository(axios: AxiosInstance): IPersonRepository {
       (await axios.get(`/people?name=${name}`)).data,
     getByEmail: async (email: string) =>
       (await axios.get(`/people?email=${email}`)).data,
-    create: async (person: Person) =>
-      (await axios.post("/people", person)).data,
+    create: async (person: Person) => await axios.post("/people", person),
+    update: async (person: Person) =>
+      await axios.put(`/people/${person.id}`, person),
   };
 }
 
