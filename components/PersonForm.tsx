@@ -3,6 +3,7 @@ import { Person } from "../lib/person/models/person";
 
 interface Props {
   initialPerson?: Person;
+  onDelete?: (id: number) => void;
   onSubmit: (person: Person) => void;
 }
 
@@ -14,6 +15,7 @@ export default function PersonForm({
     last_name: "",
   } as Person,
   onSubmit,
+  onDelete,
 }: Props): ReactElement {
   const [person, setPerson] = useState<Person>(initialPerson);
 
@@ -42,7 +44,7 @@ export default function PersonForm({
             id='first_name'
             type='text'
             required
-            value={person.first_name}
+            defaultValue={person.first_name}
             onChange={(e) =>
               setPerson({ ...person, first_name: e.target.value })
             }
@@ -62,7 +64,7 @@ export default function PersonForm({
             id='last_name'
             type='text'
             required
-            value={person.last_name}
+            defaultValue={person.last_name}
             onChange={(e) =>
               setPerson({ ...person, last_name: e.target.value })
             }
@@ -82,7 +84,7 @@ export default function PersonForm({
             id='email'
             type='email'
             required
-            value={person.email}
+            defaultValue={person.email}
             onChange={(e) => setPerson({ ...person, email: e.target.value })}
             className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'
           />
@@ -100,19 +102,28 @@ export default function PersonForm({
             id='avatar'
             type='avatar'
             required
-            value={person.avatar}
+            defaultValue={person.avatar}
             onChange={(e) => setPerson({ ...person, avatar: e.target.value })}
             className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5'
           />
         </div>
       </div>
-      <div className='sm:col-span-4 mt-10'>
+      <div className='sm:col-span-4 flex justify-between mt-10 space-x-2'>
         <button
           type='submit'
           className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
         >
           Save
         </button>
+        {onDelete && (
+          <button
+            onClick={() => onDelete(person.id)}
+            type='button'
+            className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md transition-all duration-200 hover:shadow-sm text-red-500 hover:text-white  hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'
+          >
+            Delete
+          </button>
+        )}
       </div>
     </form>
   );

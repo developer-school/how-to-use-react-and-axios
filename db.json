@@ -1,13 +1,6 @@
 {
   "people": [
     {
-      "id": 1,
-      "first_name": "Paulq",
-      "last_name": "Halliday",
-      "email": "hello@developer.school",
-      "avatar": "https://developer.school/favicon.ico"
-    },
-    {
       "id": 2,
       "first_name": "Clay",
       "last_name": "Merington",
@@ -27,13 +20,6 @@
       "last_name": "Boothebie",
       "email": "wboothebie3@gov.uk",
       "avatar": "https://robohash.org/etomnisitaque.png?size=50x50&set=set1"
-    },
-    {
-      "id": 5,
-      "first_name": "Jaquenette",
-      "last_name": "Shiril",
-      "email": "jshiril4@cornell.edu",
-      "avatar": "https://robohash.org/debitiseaquenumquam.png?size=50x50&set=set1"
     },
     {
       "id": 6,
