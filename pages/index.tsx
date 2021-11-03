@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PersonList from "../components/PersonList";
 import { Person } from "../lib/person/models/person";
+import PersonRepository from "../lib/person/repositories/person.repository";
 
 export default function Home() {
   const [contacts, setContacts] = useState<Person[]>([
@@ -12,6 +13,16 @@ export default function Home() {
       avatar: "https://developer.school/favicon.ico",
     },
   ]);
+
+  useEffect(() => {
+    async function getContacts() {
+      const contacts = await PersonRepository.getAll();
+
+      setContacts(contacts);
+    }
+
+    getContacts();
+  }, []);
 
   return (
     <div className='bg-gray-200 min-h-screen h-full'>
